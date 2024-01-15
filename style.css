@@ -50,3 +50,27 @@ main {
     gap: 8px;
     justify-content: space-between;
 }
+
+#content table {
+    margin-top: 24px;
+    width: 100%;
+}
+
+#content tbody {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    align-items: center;
+}
+
+#content tr {
+    display: flex;
+    width: 80%;
+    justify-content: space-between;
+
+}
+
+#content table tbody tr td:first-child {
+    color: lightgray;
+}
+
