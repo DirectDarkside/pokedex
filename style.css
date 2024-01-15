@@ -13,7 +13,7 @@ main {
 }
 
 .minHeight {
-    min-height: 50vh;
+    min-height: 20vh;
 }
 
 .pokedexNav {
@@ -72,5 +72,15 @@ main {
 
 #content table tbody tr td:first-child {
     color: lightgray;
+}
+
+.pokemonImgContainer {
+    display: flex;
+    justify-content: center;
+}
+
+.pokemonImgContainer img {
+    object-fit: contain;
+    width: 70vw;
 }
 
