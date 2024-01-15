@@ -35,7 +35,7 @@ function generatePokemonType(type) {
 function generatePokemonInfo() {
     return /*html*/`
         <main>
-            <section class="minHeight">
+            <section class="minHeight padding24">
                 <nav class="pokedexNav">
                     <img src="./img/left-arrow-white.png">
                     <img src="./img/heart-white.png">
@@ -48,7 +48,7 @@ function generatePokemonInfo() {
                     <div class="type"><span>type</span></div>
                 </section>
             </section>
-            <section id="content">
+            <section id="content" class="padding24">
                 <div class="pokemonImgContainer">
                     <img src="${currentPokemon.sprites.front_default}">
                 </div>

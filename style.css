@@ -3,17 +3,32 @@ body {
 }
 
 main {
-    padding: 24px 24px;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: rgb(251,108,108);
 }
 
 #pokedex {
     min-height: 100vh;
     color: white;
-    background-color: rgb(251,108,108);
+    
+}
+
+#content {
+    background-color: white;
+    color: black;
+    flex: 1;
+    border-top-left-radius: 24px;
+    border-top-right-radius: 24px;
+}
+
+.padding24 {
+    padding: 24px;
 }
 
 .minHeight {
-    min-height: 20vh;
+    min-height: 50vh;
 }
 
 .pokedexNav {
@@ -77,10 +92,13 @@ main {
 .pokemonImgContainer {
     display: flex;
     justify-content: center;
+    position: relative;
 }
 
 .pokemonImgContainer img {
     object-fit: contain;
     width: 70vw;
+    position: absolute;
+    bottom: -55px;
 }
 
