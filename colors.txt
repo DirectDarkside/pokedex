@@ -1,2 +1,5 @@
 background-color:
+grass: rgb(72,208,176),
 fire: rgb(251,108,108),
+water: rgb(118,189,254),
+electric: rgb(255,216,111)
