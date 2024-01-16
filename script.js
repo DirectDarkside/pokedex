@@ -5,6 +5,18 @@ async function loadPokemonList() {
     let response = await fetch(url);
     let responseAsJson = await response.json();
     console.log(responseAsJson);
+
+    let pokemonList = responseAsJson.results;
+    renderPokemonList(pokemonList);
+}
+
+function renderPokemonList(pokemonList) {
+    console.log(pokemonList);
+    let pokemonListContent = document.getElementById('pokemonList');
+    pokemonListContent.innerHTML = '';
+    pokemonList.forEach((pokemon) => {
+        pokemonListContent.innerHTML += generatePokemonList(pokemon);
+    });
 }
 
 async function loadPokemon() {
@@ -31,6 +43,18 @@ function renderPokemonType() {
     for(let i = 0; i < pokemonTypeArr.length; i++) {
         typeContent.innerHTML += generatePokemonType(pokemonTypeArr[i].type.name);
     }
+}
+
+function generatePokemonList(pokemon) {
+    return /*html*/`
+        <div id="pokemonList">
+            <div class="pokemonCard">
+                <h2>${pokemon.name}</h2>
+                <span>Grass</span>
+                <span>Poison</span>
+            </div>
+        </div>
+    `;
 }
 
 function generatePokemonType(type) {

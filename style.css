@@ -102,3 +102,21 @@ main {
     bottom: -55px;
 }
 
+#pokemonList {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.pokemonCard {
+    height: 200px;
+    width: 300px;
+    background-color: grey;
+    border-radius: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+

@@ -6,16 +6,20 @@
     <title>Pokedex</title>
     <link rel="stylesheet" href="./style.css">
 </head>
-<body>
-    <section class="minHeight padding24">
+<body onload="loadPokemonList()">
+    <section class="padding24">
         <nav class="pokedexNav">
             <img src="./img/left-arrow-black.png">
             <img src="./img/hamburger-menu.png">
         </nav>
     </section>
     <section>
-        <div id="pokedex">
-
+        <div id="pokemonList">
+            <div class="pokemonCard">
+                <h2>Bulbasaur</h2>
+                <span>Grass</span>
+                <span>Poison</span>
+            </div>
         </div>
     </section>
 
