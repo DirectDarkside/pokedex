@@ -1,5 +1,12 @@
 let currentPokemon;
 
+async function loadPokemonList() {
+    let url = 'https://pokeapi.co/api/v2/pokemon?limit=20&offset=0';
+    let response = await fetch(url);
+    let responseAsJson = await response.json();
+    console.log(responseAsJson);
+}
+
 async function loadPokemon() {
     let url = `https://pokeapi.co/api/v2/pokemon/charmander`;
     let response = await fetch(url);
