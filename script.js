@@ -1,4 +1,5 @@
-let currentPokemon;
+let previousUrl;
+let nextUrl;
 
 async function loadPokemonList() {
     let url = 'https://pokeapi.co/api/v2/pokemon?limit=20&offset=0';
@@ -8,26 +9,64 @@ async function loadPokemonList() {
 
     let pokemonList = responseAsJson.results;
     renderPokemonList(pokemonList);
+    setButtonAttribute(responseAsJson);
+}
+
+async function loadNewPokemonList(event) {
+    let link; 
+    if(event == 'previous') {
+        link = previousUrl
+    } else link = nextUrl;
+    let url = link;
+    let response = await fetch(url);
+    let responseAsJson = await response.json();
+    let pokemonList = responseAsJson.results;
+    renderPokemonList(pokemonList);
+    setButtonAttribute(responseAsJson);
 }
 
 function renderPokemonList(pokemonList) {
-    console.log(pokemonList);
     let pokemonListContent = document.getElementById('pokemonList');
     pokemonListContent.innerHTML = '';
-    pokemonList.forEach((pokemon) => {
-        pokemonListContent.innerHTML += generatePokemonList(pokemon);
+    pokemonList.forEach((pokemon, index) => {
+        pokemonListContent.innerHTML += generatePokemonList(pokemon, index);
+        loadPokemon(pokemon, index);
     });
 }
 
-async function loadPokemon() {
-    let url = `https://pokeapi.co/api/v2/pokemon/charmander`;
+function setButtonAttribute(pokemonList) {
+    let previousButton = document.getElementById('previousButton');
+    let nextButton = document.getElementById('nextButton');
+    if(pokemonList.previous) {
+        previousButton.disabled = false;
+        previousUrl = pokemonList.previous;
+    } else {
+        previousButton.disabled = true;
+        previousUrl = null;
+    }
+    if(pokemonList.next) {
+        nextButton.disabled = false;
+        nextUrl = pokemonList.next;
+    } else {
+        nextButton.disabled = true;
+        nextUrl = null;
+    }
+}
+
+async function loadPokemon(pokemon, index) {
+    let url = pokemon.url;
     let response = await fetch(url);
     currentPokemon = await response.json();
 
     console.log('Loaded pokemon', currentPokemon);
 
-    renderPokemonInfo();
-    renderPokemonType();
+    // renderPokemonInfo();
+    renderPokemonType(currentPokemon, index);
+    renderPokemonImage(currentPokemon, index);
+}
+
+function renderPokemonImage(pokemon, index) {
+    document.getElementById(`pokemonImage${index}`).src = pokemon.sprites['front_default'];
 }
 
 function renderPokemonInfo() {
@@ -36,22 +75,28 @@ function renderPokemonInfo() {
     document.getElementById('pokemonName').innerHTML = currentPokemon.name;
 }
 
-function renderPokemonType() {
-    let typeContent = document.getElementById('pokemonTypes');
-    let pokemonTypeArr = currentPokemon.types;
+function renderPokemonType(pokemon, index) {
+    let typeContent = document.getElementById(`pokemonTypes${index}`);
+    let pokemonTypeArr = pokemon.types;
     typeContent.innerHTML = '';
     for(let i = 0; i < pokemonTypeArr.length; i++) {
         typeContent.innerHTML += generatePokemonType(pokemonTypeArr[i].type.name);
     }
 }
 
-function generatePokemonList(pokemon) {
+function generatePokemonList(pokemon, index) {
     return /*html*/`
-        <div id="pokemonList">
+        <div>
             <div class="pokemonCard">
-                <h2>${pokemon.name}</h2>
-                <span>Grass</span>
-                <span>Poison</span>
+                <div>
+                    <h2>${pokemon.name}</h2>
+                    <section id="pokemonTypes${index}">
+
+                    </section>
+                </div>
+                <div class="pokemonImage">
+                    <img id="pokemonImage${index}" src="">
+                </div>
             </div>
         </div>
     `;
