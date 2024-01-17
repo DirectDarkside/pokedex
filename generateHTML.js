@@ -33,7 +33,7 @@ function generatePokemonInfo(pokemon) {
             </nav>
             <section class="pokemonHead">
                 <h1 id="pokemonName">${pokemon.name}</h1>
-                <span><b>#001</b></span>    
+                <span><b>#${pokemon.id}</b></span>    
             </section>
             <section class="pokemonTypes" id="pokemonTypes">
                 <div class="type"><span>type</span></div>

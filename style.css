@@ -1,5 +1,6 @@
 body {
     margin: 0;
+    background-color: #0061b0;
 }
 
 .h50 {
@@ -131,12 +132,17 @@ body {
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    transition: scale 100ms ease-in-out 150ms;
 }
 
 .pokemonCard section {
     display: flex;
     flex-direction: column;
     gap: 8px;
+}
+
+.pokemonCard:hover {
+    scale: 1.2;
 }
 
 .pokemonImage {
