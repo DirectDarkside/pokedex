@@ -87,6 +87,7 @@ async function renderPokemonInfo(index) {
     content.innerHTML = generatePokemonInfo(currentPokemon);
     renderPokemonCardType(currentPokemon);
     renderPokemonCardAbilities(currentPokemon);
+    document.getElementById('cardTop').style.backgroundColor = document.getElementById(`pokemonCard${index}`).style.backgroundColor;
 }
 
 function renderPokemonType(pokemon, index) {
@@ -101,10 +102,9 @@ function renderPokemonType(pokemon, index) {
 
 function checkBackgroundColor(type, index, j) {
     if(j === 0) {
-        let card = document.getElementById(`pokemonCard${index}`);
         typesList.forEach(typeElement => {
             if(type == typeElement.name) {
-                card.style.backgroundColor = typeElement.color;
+                document.getElementById(`pokemonCard${index}`).style.backgroundColor = typeElement.color;
             }
         })
     };

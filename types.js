@@ -30,5 +30,9 @@ let typesList = [
     {
         name: 'poison',
         color: 'rgb(157, 16, 227)'
+    },
+    {
+        name: 'normal',
+        color: 'rgb(128,128,128)'
     }
 ];
