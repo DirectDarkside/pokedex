@@ -6,7 +6,7 @@
     <title>Pokedex</title>
     <link rel="stylesheet" href="./style.css">
 </head>
-<body onload="loadPokemonList()">
+<body onload="init()">
     <section class="padding24">
         <nav class="pokedexNav">
             <img src="./img/left-arrow-black.png">
@@ -28,6 +28,15 @@
         <button id="nextButton" onclick="loadNewPokemonList('next')">Next</button>
     </section>
 
+    <!-- <div w3-include-html="./templates/pokedex.html"></div> -->
+    <div id="pokedexContainer">  
+        <div id="pokedex">
+            
+        </div>
+    </div>
+
+    <script src="./types.js"></script>
+    <script src="./generateHTML.js"></script>
     <script src="./script.js"></script>
 </body>
 </html>
