@@ -45,10 +45,18 @@ function generatePokemonInfo(pokemon, pokemonName) {
             </div>
             <div>
                 <nav class="pokedexCategory">
-                    <a href="">About</a>
-                    <a href="">Base Stats</a>
-                    <a href="">Evolution</a>
-                    <a href="">Moves</a>
+                    <span>
+                        <a>About</a>
+                    </span>
+                    <span>
+                        <a>Base Stats</a>
+                    </span>
+                    <span>
+                        <a>Evolution</a>
+                    </span>
+                    <span>
+                        <a>Moves</a>
+                    </span>
                 </nav>
                 <table>
                     <tr>

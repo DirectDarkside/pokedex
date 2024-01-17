@@ -78,6 +78,23 @@ body {
     display: flex;
     gap: 8px;
     justify-content: space-between;
+    height: 30px;
+}
+
+.pokedexCategory span {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+
+.pokedexCategory a {
+    transition: all 120ms ease-in-out;
+}
+
+.pokedexCategory span:hover {
+    color: lightgray;
 }
 
 #content table {
@@ -142,7 +159,7 @@ body {
 }
 
 .pokemonCard:hover {
-    scale: 1.2;
+    scale: 0.9;
 }
 
 .pokemonImage {

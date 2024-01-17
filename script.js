@@ -14,11 +14,8 @@ async function getFetch(link) {
 }
 
 async function loadPokemonList() {
-    url = 'https://pokeapi.co/api/v2/pokemon?limit=20&offset=0';
-    let response = await fetch(url);
-    let responseAsJson = await response.json();
+    let responseAsJson = await getFetch('https://pokeapi.co/api/v2/pokemon?limit=20&offset=0');
     console.log(responseAsJson);
-
     pokemonList = responseAsJson.results;
     renderPokemonList(pokemonList);
     setButtonAttribute(responseAsJson);
@@ -30,8 +27,7 @@ async function loadNewPokemonList(event) {
         link = previousUrl
     } else link = nextUrl;
     let url = link;
-    let response = await fetch(url);
-    let responseAsJson = await response.json();
+    let responseAsJson = await getFetch(url)
     pokemonList = responseAsJson.results;
     renderPokemonList(pokemonList);
     setButtonAttribute(responseAsJson);
@@ -68,8 +64,7 @@ function setButtonAttribute(pokemonList) {
 
 async function loadPokemon(pokemon, index) {
     let url = pokemon.url;
-    let response = await fetch(url);
-    currentPokemon = await response.json();
+    currentPokemon = await getFetch(url);
     renderPokemonType(currentPokemon, index);
     renderPokemonImage(currentPokemon, index);
 }
