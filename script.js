@@ -41,7 +41,8 @@ function renderPokemonList(pokemonList) {
     let pokemonListContent = document.getElementById('pokemonList');
     pokemonListContent.innerHTML = '';
     pokemonList.forEach((pokemon, index) => {
-        pokemonListContent.innerHTML += generatePokemonList(pokemon, index);
+        let pokemonName = capitalizeFirstLetter(pokemon.name);
+        pokemonListContent.innerHTML += generatePokemonList(pokemon, index, pokemonName);
         loadPokemon(pokemon, index);
     });
 }
@@ -69,9 +70,6 @@ async function loadPokemon(pokemon, index) {
     let url = pokemon.url;
     let response = await fetch(url);
     currentPokemon = await response.json();
-
-    console.log('Loaded pokemon', currentPokemon);
-
     renderPokemonType(currentPokemon, index);
     renderPokemonImage(currentPokemon, index);
 }
@@ -84,7 +82,8 @@ async function renderPokemonInfo(index) {
     let pokemon = pokemonList[index];
     let currentPokemon = await getFetch(pokemon.url);
     let content = document.getElementById('pokedex');
-    content.innerHTML = generatePokemonInfo(currentPokemon);
+    let pokemonName = capitalizeFirstLetter(currentPokemon.name);
+    content.innerHTML = generatePokemonInfo(currentPokemon, pokemonName);
     renderPokemonCardType(currentPokemon);
     renderPokemonCardAbilities(currentPokemon);
     document.getElementById('cardTop').style.backgroundColor = document.getElementById(`pokemonCard${index}`).style.backgroundColor;
@@ -101,13 +100,17 @@ function renderPokemonType(pokemon, index) {
 }
 
 function checkBackgroundColor(type, index, j) {
-    if(j === 0) {
+    if(j == 0 && type != 'normal') {
         typesList.forEach(typeElement => {
             if(type == typeElement.name) {
                 document.getElementById(`pokemonCard${index}`).style.backgroundColor = typeElement.color;
             }
         })
-    };
+    } 
+}
+
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
 function renderPokemonCardType(pokemon) {

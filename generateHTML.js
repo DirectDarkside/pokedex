@@ -1,9 +1,9 @@
-function generatePokemonList(pokemon, index) {
+function generatePokemonList(pokemon, index, pokemonName) {
     return /*html*/`
         <div onclick="loadPokemonCard(${index})">
             <div class="pokemonCard" id="pokemonCard${index}">
                 <div>
-                    <h2>${pokemon.name}</h2>
+                    <h2>${pokemonName}</h2>
                     <section id="pokemonTypes${index}">
 
                     </section>
@@ -22,7 +22,7 @@ function generatePokemonType(type) {
     `;
 }
 
-function generatePokemonInfo(pokemon) {
+function generatePokemonInfo(pokemon, pokemonName) {
     return /*html*/`
         <section class="padding24 h50" id="cardTop">
             <nav class="pokedexNav">
@@ -32,7 +32,7 @@ function generatePokemonInfo(pokemon) {
                 <img src="./img/heart-white.png">
             </nav>
             <section class="pokemonHead">
-                <h1 id="pokemonName">${pokemon.name}</h1>
+                <h1 id="pokemonName">${pokemonName}</h1>
                 <span><b>#${pokemon.id}</b></span>    
             </section>
             <section class="pokemonTypes" id="pokemonTypes">

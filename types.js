@@ -34,5 +34,25 @@ let typesList = [
     {
         name: 'normal',
         color: 'rgb(128,128,128)'
+    },
+    {
+        name: 'psychic',
+        color: 'rgb(214, 28, 208)'
+    },
+    {
+        name: 'rock',
+        color: 'rgb(156, 112, 3)'
+    },
+    {
+        name: 'ghost',
+        color: 'rgb(81, 10, 163)'
+    },
+    {
+        name: 'ground',
+        color: 'rgb(201, 145, 6)'
+    },
+    {
+        name: 'fairy',
+        color: 'rgb(255, 23, 205)'
     }
 ];
