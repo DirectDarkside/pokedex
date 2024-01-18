@@ -114,6 +114,7 @@ async function renderPokemonAbout(index) {
     let content = document.getElementById('categoryContainer');
     content.innerHTML = generateAbout(currentPokemon);
     renderPokemonSpecies(currentPokemon);
+    convertInfo(currentPokemon);
     renderPokemonCardAbilities(currentPokemon);
 }
 
@@ -144,6 +145,15 @@ function renderPokemonType(pokemon, index) {
         typeContent.innerHTML += generatePokemonType(pokemonTypeArr[i].type.name);
         checkBackgroundColor(pokemonTypeArr[i].type.name, index, i);
     }
+}
+
+function convertInfo(currentPokemon) {
+    let height = currentPokemon.height * 10;
+    let roundHeight = Math.round(height);
+    document.getElementById('aboutHeight').innerHTML = roundHeight;
+    let weight = currentPokemon.weight / 10;
+    let textWeight = weight.toString();
+    document.getElementById('aboutWeight').innerHTML = textWeight.replace('.', ',');
 }
 
 async function renderPokemonSpecies(currentPokemon) {

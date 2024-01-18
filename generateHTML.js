@@ -99,11 +99,11 @@ function generateAbout(pokemon) {
             </tr>
             <tr>
                 <td>Height</td>
-                <td>${pokemon.height}* ( u.k. cm)</td>
+                <td>${pokemon.height} dm (<span id="aboutHeight">u.k.</span> cm)</td>
             </tr>
             <tr>
                 <td>Weight</td>
-                <td>${pokemon.weight} lbs ( u.k kg)</td>
+                <td>${pokemon.weight} hg (<span id="aboutWeight">u.k.</span> kg)</td>
             </tr>
             <tr>
                 <td>Abilities</td>
