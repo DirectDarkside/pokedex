@@ -5,7 +5,7 @@ function renderChart(currentPokemon) {
         data: {
           labels: pokemonStatsName,
           datasets: [{
-            label: `stats from ${currentPokemon.name}`,
+            label: `${currentPokemon.name}`,
             data: pokemonStatsNumber,
             borderWidth: 1
           }]

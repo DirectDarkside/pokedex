@@ -81,8 +81,9 @@ async function renderPokemonInfo(index) {
     let content = document.getElementById('pokedex');
     let pokemonName = capitalizeFirstLetter(currentPokemon.name);
     content.innerHTML = generatePokemonInfo(currentPokemon, pokemonName, index);
+    renderPokemonCardType(currentPokemon);
     renderPokemonStats(index);
-    document.getElementById('cardTop').style.backgroundColor = document.getElementById(`pokemonCard${index}`).style.backgroundColor;
+    document.getElementById('pokedex').style.backgroundColor = document.getElementById(`pokemonCard${index}`).style.backgroundColor;
 }
 
 async function renderPokemonMoves(index) {
@@ -112,7 +113,7 @@ async function renderPokemonAbout(index) {
     let currentPokemon = await getFetch(pokemon.url);
     let content = document.getElementById('categoryContainer');
     content.innerHTML = generateAbout(currentPokemon);
-    renderPokemonCardType(currentPokemon);
+    renderPokemonSpecies(currentPokemon);
     renderPokemonCardAbilities(currentPokemon);
 }
 
@@ -143,6 +144,12 @@ function renderPokemonType(pokemon, index) {
         typeContent.innerHTML += generatePokemonType(pokemonTypeArr[i].type.name);
         checkBackgroundColor(pokemonTypeArr[i].type.name, index, i);
     }
+}
+
+async function renderPokemonSpecies(currentPokemon) {
+    let species = await getFetch(currentPokemon.species.url);
+    document.getElementById('species').innerHTML = species.genera[7].genus;
+    console.log(species);
 }
 
 function checkBackgroundColor(type, index, j) {

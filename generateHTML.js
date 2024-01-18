@@ -91,7 +91,7 @@ function generateAbout(pokemon) {
         <table>
             <tr>
                 <td>Species</td>
-                <td>Seed</td>
+                <td id="species">Seed</td>
             </tr>
             <tr>
                 <td>Height</td>

@@ -3,8 +3,23 @@ body {
     background-color: #0061b0;
 }
 
+h1 {
+    text-align: center;
+}
+
 .h50 {
     height: 50%;
+}
+
+.headline {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    gap: 16px;
+}
+
+.headline img {
+    object-fit: contain;
 }
 
 #pokedexContainer {
@@ -105,6 +120,7 @@ body {
 #content table {
     margin-top: 24px;
     width: 100%;
+    font-size: 14px;
 }
 
 #content tbody {
@@ -133,7 +149,7 @@ body {
 
 .pokemonImgContainer img {
     object-fit: contain;
-    width: 80%;
+    width: 70%;
     position: absolute;
     bottom: -10px;
 }
