@@ -16,6 +16,7 @@ body {
     display: none;
     justify-content: center;
     align-items: center;
+    gap: 16px;
     top: 0;
     left: 0;
 }
@@ -180,6 +181,10 @@ body {
     color: brown;
     font-size: 32px;
     border-radius: 8px;
+    cursor: pointer;
+}
+
+.arrowImage {
     cursor: pointer;
 }
 

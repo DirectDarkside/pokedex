@@ -126,7 +126,23 @@ function renderPokemonCardAbilities(pokemon) {
 
 function loadPokemonCard(index) {
     openCard();
-    renderPokemonInfo(index)
+    renderPokemonContainer(index);
+    renderPokemonInfo(index);
+}
+
+function renderPokemonContainer(index) {
+    let content = document.getElementById('pokedexContainer');
+    content.innerHTML = generatePokemonContainer(index);
+}
+
+function checkArrow(orientation, index) {
+    let value = index
+    if(orientation == 'back') {
+        value--;
+    } else {
+        value++;
+    }
+    loadPokemonCard(value);
 }
 
 function openCard() {

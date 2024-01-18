@@ -102,3 +102,17 @@ function generatePokemonAbilities(ability) {
         <span>${ability}</span
     `;
 }
+
+function generatePokemonContainer(index) {
+    return /*html*/`
+        <div>
+            <img src="./img/left-arrow-black.png" class="arrowImage" onclick="checkArrow('back', ${index})">
+        </div>
+        <div id="pokedex">
+            
+        </div>
+        <div>
+            <img src="./img/right-arrow-black.png" class="arrowImage" onclick="checkArrow('next', ${index})">
+        </div>
+    `;
+}
