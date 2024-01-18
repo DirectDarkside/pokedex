@@ -22,9 +22,9 @@ function generatePokemonType(type) {
     `;
 }
 
-function generatePokemonInfo(pokemon, pokemonName) {
+function generatePokemonInfo(pokemon, pokemonName, index) {
     return /*html*/`
-        <section class="padding24 h50" id="cardTop">
+        <section class="padding24 maxH50" id="cardTop">
             <nav class="pokedexNav">
                 <div onclick="closeCard()">
                 <img src="./img/left-arrow-white.png">
@@ -45,53 +45,22 @@ function generatePokemonInfo(pokemon, pokemonName) {
             </div>
             <div>
                 <nav class="pokedexCategory">
-                    <span>
+                    <span onclick="renderPokemonAbout(${index})">
                         <a>About</a>
                     </span>
-                    <span>
+                    <span onclick="renderPokemonStats(${index})">
                         <a>Base Stats</a>
                     </span>
-                    <span>
+                    <span onclick="renderPokemonEvolution(${index})">
                         <a>Evolution</a>
                     </span>
-                    <span>
+                    <span onclick="renderPokemonMoves(${index})">
                         <a>Moves</a>
                     </span>
                 </nav>
-                <table>
-                    <tr>
-                        <td>Species</td>
-                        <td>Seed</td>
-                    </tr>
-                    <tr>
-                        <td>Height</td>
-                        <td>${pokemon.height}* ( u.k. cm)</td>
-                    </tr>
-                    <tr>
-                        <td>Weight</td>
-                        <td>${pokemon.weight} lbs ( u.k kg)</td>
-                    </tr>
-                    <tr>
-                        <td>Abilities</td>
-                        <td id="abilities">Overgrow, Chlorophyl</td>
-                    </tr>
-                </table>
-                <table>
-                    <th>Breeding</th>
-                    <tr>
-                        <td>Gender</td>
-                        <td>87.5%</td>
-                        <td>12.5%</td>
-                    </tr>
-                    <tr>
-                        <td>Egg Groups</td>
-                        <td>Monster</td>
-                    </tr>
-                    <tr>
-                        <td>Egg Cycle</td>
-                        <td>Grass</td>
-                    </tr>
-                </table>
+                <div id="categoryContainer">
+
+                </div>
             </div>
         </section>
     `;
@@ -114,5 +83,44 @@ function generatePokemonContainer(index) {
         <div>
             <img src="./img/right-arrow-black.png" class="arrowImage" onclick="checkListLength('next', ${index})">
         </div>
+    `;
+}
+
+function generateAbout(pokemon) {
+    return /*html*/`
+        <table>
+            <tr>
+                <td>Species</td>
+                <td>Seed</td>
+            </tr>
+            <tr>
+                <td>Height</td>
+                <td>${pokemon.height}* ( u.k. cm)</td>
+            </tr>
+            <tr>
+                <td>Weight</td>
+                <td>${pokemon.weight} lbs ( u.k kg)</td>
+            </tr>
+            <tr>
+                <td>Abilities</td>
+                <td id="abilities">Overgrow, Chlorophyl</td>
+            </tr>
+        </table>
+        <table>
+            <th>Breeding</th>
+            <tr>
+                <td>Gender</td>
+                <td>87.5%</td>
+                <td>12.5%</td>
+            </tr>
+            <tr>
+                <td>Egg Groups</td>
+                <td>Monster</td>
+            </tr>
+            <tr>
+                <td>Egg Cycle</td>
+                <td>Grass</td>
+            </tr>
+        </table>
     `;
 }

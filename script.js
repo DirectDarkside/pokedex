@@ -1,6 +1,8 @@
 let previousUrl;
 let pokemonList;
 let nextUrl;
+let pokemonStatsName = [];
+let pokemonStatsNumber = [];
 let pokemons = [];
 
 function init() {
@@ -78,10 +80,59 @@ async function renderPokemonInfo(index) {
     let currentPokemon = await getFetch(pokemon.url);
     let content = document.getElementById('pokedex');
     let pokemonName = capitalizeFirstLetter(currentPokemon.name);
-    content.innerHTML = generatePokemonInfo(currentPokemon, pokemonName);
+    content.innerHTML = generatePokemonInfo(currentPokemon, pokemonName, index);
+    renderPokemonStats(index);
+    document.getElementById('cardTop').style.backgroundColor = document.getElementById(`pokemonCard${index}`).style.backgroundColor;
+}
+
+async function renderPokemonMoves(index) {
+    let pokemon = pokemonList[index];
+    let currentPokemon = await getFetch(pokemon.url);
+    let content = document.getElementById('categoryContainer');
+    content.innerHTML = `<div id="moves"></div>`; 
+    renderMove(currentPokemon);
+}
+
+function renderMove(currentPokemon) {
+    let moveContainer = document.getElementById('moves');
+    currentPokemon.moves.forEach(move => {
+        moveContainer.innerHTML += `<p>${move.move.name}</p>`;
+    });
+}
+
+async function renderPokemonEvolution(index) {
+    let pokemon = pokemonList[index];
+    let currentPokemon = await getFetch(pokemon.url);
+    let evolution = await getFetch(`https://pokeapi.co/api/v2/evolution-chain/${currentPokemon.id}/`);
+    console.log(evolution);
+}
+
+async function renderPokemonAbout(index) {
+    let pokemon = pokemonList[index];
+    let currentPokemon = await getFetch(pokemon.url);
+    let content = document.getElementById('categoryContainer');
+    content.innerHTML = generateAbout(currentPokemon);
     renderPokemonCardType(currentPokemon);
     renderPokemonCardAbilities(currentPokemon);
-    document.getElementById('cardTop').style.backgroundColor = document.getElementById(`pokemonCard${index}`).style.backgroundColor;
+}
+
+async function renderPokemonStats(index) {
+    let pokemon = pokemonList[index];
+    let currentPokemon = await getFetch(pokemon.url);
+    let content = document.getElementById('categoryContainer');
+    content.innerHTML = `<canvas id="myChart"></canvas>`;
+    getStats(currentPokemon)
+    renderChart(currentPokemon);
+    console.log(currentPokemon);
+}
+
+function getStats(pokemon) {
+    pokemonStatsName = [];
+    pokemonStatsNumber = [];
+    pokemon.stats.forEach(stat => {
+        pokemonStatsName.push(stat.stat.name);
+        pokemonStatsNumber.push(stat.base_stat);
+    });
 }
 
 function renderPokemonType(pokemon, index) {
@@ -95,7 +146,7 @@ function renderPokemonType(pokemon, index) {
 }
 
 function checkBackgroundColor(type, index, j) {
-    if(j == 0 && type != 'normal') {
+    if(j == 0) {
         typesList.forEach(typeElement => {
             if(type == typeElement.name) {
                 document.getElementById(`pokemonCard${index}`).style.backgroundColor = typeElement.color;

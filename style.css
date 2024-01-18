@@ -23,16 +23,20 @@ body {
 
 #pokedex {
     width: 50vh;
-    height: 80vh;
+    height: 75vh;
+    max-height: 75vh;
     background-color: white;
     border-radius: 16px;
     overflow: hidden;
 }
 
+#cardTop {
+    height: 50%;
+}
+
 #content {
     background-color: white;
     color: black;
-    flex: 1;
     border-top-left-radius: 24px;
     border-top-right-radius: 24px;
 }
@@ -186,6 +190,16 @@ body {
 
 .arrowImage {
     cursor: pointer;
+}
+
+#myChart {
+    margin-top: 16px;
+}
+
+#moves {
+    margin-top: 16px;
+    max-height: 20vh;
+    overflow-y: scroll;
 }
 
 
