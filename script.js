@@ -142,6 +142,17 @@ function checkArrow(orientation, index) {
     } else {
         value++;
     }
+    return value;
+}
+
+function checkListLength(orientation, index) {
+    value = checkArrow(orientation, index);
+    let length = pokemonList.length - 1;
+    if(value < 0) {
+        value = pokemonList.length - 1;
+    } else if(value > length) {
+        value = 0;
+    }
     loadPokemonCard(value);
 }
 
