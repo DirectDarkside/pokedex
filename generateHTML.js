@@ -83,6 +83,10 @@ function generatePokemonContainer(index) {
         <div>
             <img src="./img/right-arrow-black.png" class="arrowImage" onclick="checkListLength('next', ${index})">
         </div>
+        <div class="mobileArrows">
+            <img src="./img/left-arrow-black.png" onclick="checkListLength('back', ${index})">
+            <img src="./img/right-arrow-black.png" onclick="checkListLength('next', ${index})">
+        </div>
     `;
 }
 

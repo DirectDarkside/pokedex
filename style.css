@@ -218,4 +218,53 @@ h1 {
     overflow-y: scroll;
 }
 
+.mobileArrows {
+    display: none;
+    align-items: center;
+    gap: 24px;
+    margin-top: 24px;
+}
 
+.mobileArrows img {
+    cursor: pointer;
+}
+
+@media(max-width: 640px) {
+    #pokedexContainer {
+        flex-direction: column;   
+    }
+    
+    .mobileArrows {
+        display: flex;
+    }
+
+    .arrowImage {
+        display: none;
+    }
+}
+
+@media(max-width: 500px) {
+    #pokedex {
+        width: 100%;
+    }
+
+    #content {
+        height: 100%;
+    }
+
+    #myChart {
+        margin-top: 24px;
+    }
+
+    #cardTop {
+        height: 40%;
+    }
+
+    .pokemonImgContainer img {
+        width: 60%;
+        bottom: -5px;
+        right: -20px;
+    }
+
+
+}
