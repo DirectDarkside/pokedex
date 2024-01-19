@@ -114,12 +114,12 @@ function generateAbout(pokemon) {
             <th>Breeding</th>
             <tr>
                 <td>Gender</td>
-                <td>87.5%</td>
-                <td>12.5%</td>
+                <td>male: <span id="male"></span>%</td>
+                <td>female: <span id="female"></span>%</td>
             </tr>
             <tr>
                 <td>Egg Groups</td>
-                <td>Monster</td>
+                <td id="eggGroup">Monster</td>
             </tr>
             <tr>
                 <td>Egg Cycle</td>

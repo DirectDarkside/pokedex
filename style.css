@@ -46,7 +46,7 @@ h1 {
 }
 
 #cardTop {
-    height: 50%;
+    height: 40%;
 }
 
 #content {
@@ -54,7 +54,8 @@ h1 {
     color: black;
     border-top-left-radius: 24px;
     border-top-right-radius: 24px;
-    height: 40%;
+    height: 100%;
+    
 }
 
 .padding24 {
@@ -150,9 +151,10 @@ h1 {
 
 .pokemonImgContainer img {
     object-fit: contain;
-    width: 70%;
     position: absolute;
-    bottom: -10px;
+    width: 60%;
+    bottom: -5px;
+    right: -20px;
 }
 
 #pokemonList {
@@ -249,22 +251,8 @@ h1 {
         width: 100%;
     }
 
-    #content {
-        height: 100%;
-    }
-
     #myChart {
         margin-top: 24px;
-    }
-
-    #cardTop {
-        height: 40%;
-    }
-
-    .pokemonImgContainer img {
-        width: 60%;
-        bottom: -5px;
-        right: -20px;
     }
 
 

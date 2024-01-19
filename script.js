@@ -116,6 +116,7 @@ async function renderPokemonAbout(index) {
     renderPokemonSpecies(currentPokemon);
     convertInfo(currentPokemon);
     renderPokemonCardAbilities(currentPokemon);
+    renderPokemonGender(currentPokemon);
 }
 
 async function renderPokemonStats(index) {
@@ -189,6 +190,23 @@ function renderPokemonCardAbilities(pokemon) {
     typeContent.innerHTML = '';
     for(let i = 0; i < pokemon.abilities.length; i++) {
         typeContent.innerHTML += generatePokemonAbilities(pokemon.abilities[i].ability.name);
+    }
+}
+
+function renderPokemonGender(currentPokemon) {
+    renderGender(currentPokemon, 'male');
+    renderGender(currentPokemon, 'female');
+}
+
+async function renderGender(currentPokemon, name) {
+    const maleJson = await getFetch(`https://pokeapi.co/api/v2/gender/${name}`);
+    console.log(maleJson);
+    for(let i = 0; i < maleJson.pokemon_species_details.length; i++) {
+        if(currentPokemon.name === maleJson.pokemon_species_details[i].pokemon_species.name) {
+            const sum = (maleJson.pokemon_species_details[i].rate / 8) * 100;
+            const sumString = sum.toString().replace('.', ',');;
+            document.getElementById(`${name}`).innerHTML = sumString;
+        }
     }
 }
 
