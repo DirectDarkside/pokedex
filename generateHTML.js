@@ -128,3 +128,13 @@ function generateAbout(pokemon) {
         </table>
     `;
 }
+
+function generateEvolutionList() {
+    return /*html*/`
+    <div>
+        <ol id="evolutionList">
+
+        </ol>
+    </div>
+`;
+}

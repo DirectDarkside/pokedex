@@ -4,6 +4,7 @@ let nextUrl;
 let pokemonStatsName = [];
 let pokemonStatsNumber = [];
 let pokemons = [];
+let evolutionList = [];
 
 function init() {
     loadPokemonList();
@@ -104,7 +105,33 @@ function renderMove(currentPokemon) {
 async function renderPokemonEvolution(index) {
     let pokemon = pokemonList[index];
     let currentPokemon = await getFetch(pokemon.url);
-    
+    let species = await getFetch(currentPokemon.species.url);
+    let evolutionChain = await getFetch(species.evolution_chain.url);
+    renderEvolutionChain(evolutionChain);
+}
+
+function renderEvolutionChain(chain) {
+    evolutionList = [];
+    document.getElementById('categoryContainer').innerHTML = '';
+    let evolutionChain = chain.chain;
+    checkEvolution(evolutionChain);
+    document.getElementById('categoryContainer').innerHTML = generateEvolutionList();
+    evolutionList.forEach(pokemon => {
+        document.getElementById('evolutionList').innerHTML += `<li>${pokemon}</li>`;
+    });
+}
+
+function checkEvolution(evolutionChain) {
+    let firstLetterFirstPokemon = capitalizeFirstLetter(evolutionChain.species.name);
+    evolutionList.push(firstLetterFirstPokemon);
+    if(evolutionChain.evolves_to[0]) {
+        let firstLetterSecondPokemon = capitalizeFirstLetter(evolutionChain.evolves_to[0].species.name);
+        evolutionList.push(firstLetterSecondPokemon);
+    } 
+    if(evolutionChain.evolves_to[0].evolves_to[0]) {
+        let firstLetterThirdPokemon = capitalizeFirstLetter(evolutionChain.evolves_to[0].evolves_to[0].species.name);
+        evolutionList.push(firstLetterThirdPokemon);
+    }
 }
 
 async function renderPokemonAbout(index) {
