@@ -104,8 +104,7 @@ function renderMove(currentPokemon) {
 async function renderPokemonEvolution(index) {
     let pokemon = pokemonList[index];
     let currentPokemon = await getFetch(pokemon.url);
-    let evolution = await getFetch(`https://pokeapi.co/api/v2/evolution-chain/${currentPokemon.id}/`);
-    console.log(evolution);
+    
 }
 
 async function renderPokemonAbout(index) {
@@ -160,7 +159,15 @@ function convertInfo(currentPokemon) {
 async function renderPokemonSpecies(currentPokemon) {
     let species = await getFetch(currentPokemon.species.url);
     document.getElementById('species').innerHTML = species.genera[7].genus;
+    renderPokemonEggGroup(species);
+}
+
+function renderPokemonEggGroup(species) {
     console.log(species);
+    document.getElementById('eggGroup').innerHTML = '';
+    species.egg_groups.forEach(eggGroup => {
+        document.getElementById('eggGroup').innerHTML += `<span>${eggGroup.name}</span> `;
+    });
 }
 
 function checkBackgroundColor(type, index, j) {
@@ -200,7 +207,6 @@ function renderPokemonGender(currentPokemon) {
 
 async function renderGender(currentPokemon, name) {
     const maleJson = await getFetch(`https://pokeapi.co/api/v2/gender/${name}`);
-    console.log(maleJson);
     for(let i = 0; i < maleJson.pokemon_species_details.length; i++) {
         if(currentPokemon.name === maleJson.pokemon_species_details[i].pokemon_species.name) {
             const sum = (maleJson.pokemon_species_details[i].rate / 8) * 100;
