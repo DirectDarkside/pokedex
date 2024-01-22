@@ -70,6 +70,11 @@ async function loadPokemon(pokemon, index) {
     currentPokemon = await getFetch(url);
     renderPokemonType(currentPokemon, index);
     renderPokemonImage(currentPokemon, index);
+    renderPokemonId(currentPokemon, index);
+}
+
+function renderPokemonId(currentPokemon, index) {
+    document.getElementById(`pokemonId${index}`).innerHTML = currentPokemon.id;
 }
 
 function renderPokemonImage(pokemon, index) {

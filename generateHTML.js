@@ -3,12 +3,15 @@ function generatePokemonList(pokemon, index, pokemonName) {
         <div onclick="loadPokemonCard(${index})">
             <div class="pokemonCard" id="pokemonCard${index}">
                 <div>
-                    <h2>${pokemonName}</h2>
+                    <div>
+                        <h2>${pokemonName}</h2>
+                    </div>
                     <section id="pokemonTypes${index}">
 
                     </section>
                 </div>
                 <div class="pokemonImage">
+                    <p>#<span id="pokemonId${index}"></span></p>
                     <img id="pokemonImage${index}" src="">
                 </div>
             </div>
