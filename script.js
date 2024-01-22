@@ -287,3 +287,38 @@ function openCard() {
 function closeCard() {
     document.getElementById('pokedexContainer').style.display = 'none';
 }
+
+async function renderSearchedPokemon(name) {
+    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`);
+    const currentPokemon = response.json();
+    let content = document.getElementById('pokedex');
+    let pokemonName = capitalizeFirstLetter(currentPokemon.name);
+    content.innerHTML = generatePokemonInfo(currentPokemon, pokemonName, index);
+    renderPokemonCardType(currentPokemon);
+    renderPokemonStats(index);
+    document.getElementById('pokedex').style.backgroundColor = document.getElementById(`pokemonCard${index}`).style.backgroundColor;
+}
+
+async function getPokemonSuggestions() {
+    const inputElement = document.getElementById('pokemon-input');
+    const suggestionsElement = document.getElementById('pokemon-suggestions');
+
+    const inputValue = inputElement.value.trim();
+
+    if (inputValue.length === 0) {
+        suggestionsElement.innerHTML = '';
+        return;
+    }
+
+    try {
+        const response = await fetch(`https://pokeapi.co/api/v2/pokemon/?limit=1000`);
+        const data = await response.json();
+
+        const matchingPokemon = data.results.filter(pokemon => pokemon.name.startsWith(inputValue.toLowerCase()));
+
+        const suggestionsHTML = matchingPokemon.map(pokemon => `<div>${pokemon.name}</div>`).join('');
+        suggestionsElement.innerHTML = suggestionsHTML;
+    } catch (error) {
+        console.error('Error fetching Pokémon data', error);
+    }
+}

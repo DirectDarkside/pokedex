@@ -5,6 +5,7 @@ body {
     background-image: url('./img/bg.png');
     background-size: contain;
     background-repeat: space;
+    background-position: center;
 }
 
 h1 {
@@ -51,6 +52,10 @@ h1 {
 
 #cardTop {
     height: 40%;
+    background-image: url('./img/pokeball.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 #content {
