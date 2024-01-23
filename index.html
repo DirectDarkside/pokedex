@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,38 +9,32 @@
     <link rel="stylesheet" href="./font.css">
     <link rel="stylesheet" href="./style.css">
 </head>
+
 <body onload="init()">
-    <section class="padding24">
+    <!-- <section class="padding24">
         <nav class="pokedexNav">
             <img src="./img/left-arrow-black.png">
             <img src="./img/hamburger-menu.png">
         </nav>
-    </section>
+    </section> -->
     <div class="headline">
         <h1>Pokedex</h1>
         <img src="./img/pokedex-logo.png">
     </div>
     <section class="inputSection">
-        <input type="text" id="pokemonInput" oninput="getPokemonSuggestions()">
+        <input type="text" id="pokemonInput" oninput="getPokemonSuggestions()" placeholder="Type a pokemon name">
         <div id="pokemonSuggestions"></div>
     </section>
     <section>
         <div id="pokemonList">
-            <div class="pokemonCard">
-                <h2>Bulbasaur</h2>
-                <span>Grass</span>
-                <span>Poison</span>
-            </div>
         </div>
     </section>
     <section class="buttonSection">
         <button id="previousButton" onclick="loadNewPokemonList('previous')">Previous</button>
         <button id="nextButton" onclick="loadNewPokemonList('next')">Next</button>
     </section>
+    <div id="pokedexContainer">
 
-    <!-- <div w3-include-html="./templates/pokedex.html"></div> -->
-    <div id="pokedexContainer">  
-        
     </div>
 
     <script src="./types.js"></script>
@@ -48,4 +43,5 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="./chart.js"></script>
 </body>
+
 </html>

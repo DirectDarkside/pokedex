@@ -1,5 +1,5 @@
 function generatePokemonList(pokemon, index, pokemonName) {
-    return /*html*/`
+  return /*html*/ `
         <div onclick="loadPokemonCard(${index})">
             <div class="pokemonCard" id="pokemonCard${index}">
                 <div>
@@ -20,13 +20,13 @@ function generatePokemonList(pokemon, index, pokemonName) {
 }
 
 function generatePokemonType(type) {
-    return /*html*/`
+  return /*html*/ `
         <div class="type"><span>${type}</span></div>
     `;
 }
 
 function generatePokemonInfo(pokemon, pokemonName) {
-    return /*html*/`
+  return /*html*/ `
         <section class="padding24 maxH50" id="cardTop">
             <nav class="pokedexNav">
                 <div onclick="closeCard()">
@@ -44,7 +44,7 @@ function generatePokemonInfo(pokemon, pokemonName) {
         </section>
         <section id="content" class="padding24">
             <div class="pokemonImgContainer">
-                <img src="${pokemon.sprites.other['official-artwork'].front_default}">
+                <img src="${pokemon.sprites.other["official-artwork"].front_default}">
             </div>
             <div>
                 <nav class="pokedexCategory">
@@ -70,13 +70,13 @@ function generatePokemonInfo(pokemon, pokemonName) {
 }
 
 function generatePokemonAbilities(ability) {
-    return `
+  return `
         <span>${ability}</span
     `;
 }
 
 function generatePokemonContainer(index) {
-    return /*html*/`
+  return /*html*/ `
         <div>
             <img src="./img/left-arrow-black.png" class="arrowImage" onclick="checkListLength('back', ${index})">
         </div>
@@ -94,7 +94,7 @@ function generatePokemonContainer(index) {
 }
 
 function generateSearchPokemonContainer() {
-    return /*html*/`
+  return /*html*/ `
         <div id="pokedex">
             
         </div>
@@ -102,7 +102,7 @@ function generateSearchPokemonContainer() {
 }
 
 function generateAbout(pokemon) {
-    return /*html*/`
+  return /*html*/ `
         <table>
             <tr>
                 <td>Species</td>
@@ -125,8 +125,8 @@ function generateAbout(pokemon) {
             <th>Breeding</th>
             <tr>
                 <td>Gender</td>
-                <td>male: <span id="male"></span>%</td>
-                <td>female: <span id="female"></span>%</td>
+                <td>male: <span id="male">unknown</span>%</td>
+                <td>female: <span id="female">unknown</span>%</td>
             </tr>
             <tr>
                 <td>Egg Groups</td>
@@ -141,7 +141,7 @@ function generateAbout(pokemon) {
 }
 
 function generateEvolutionList() {
-    return /*html*/`
+  return /*html*/ `
     <div>
         <div id="evolutionList">
 
@@ -151,7 +151,7 @@ function generateEvolutionList() {
 }
 
 function generateNextEvolution(pokemon) {
-    return /*html*/`
+  return /*html*/ `
         <img src="./img/bottom-arrow-black.png">
         <span>${pokemon}</span>
     `;
