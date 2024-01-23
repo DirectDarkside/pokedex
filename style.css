@@ -48,6 +48,18 @@ h1 {
     background-color: white;
     border-radius: 16px;
     overflow: hidden;
+    animation: neonize 1250ms ease-in-out infinite alternate;
+}
+
+@keyframes neonize {
+    from {
+        box-shadow: 0 0 4px #fff, 0 0 10px #fff, 0 0 30px #94a0b0, 0 0 40px #94a0b0,
+          0 0 50px #94a0b0, 0 0 60px #94a0b0;
+      }
+      to {
+        box-shadow: 0 0 2px #fff, 0 0 5px #fff, 0 0 15px #94a0b0, 0 0 25px #94a0b0,
+          0 0 35px #94a0b0, 0 0 45px #94a0b0;
+      }
 }
 
 #cardTop {
@@ -65,6 +77,10 @@ h1 {
     border-top-right-radius: 24px;
     height: 100%;
     
+}
+
+.rightArrow {
+    transform: rotate(180deg);
 }
 
 .padding24 {
@@ -125,7 +141,7 @@ h1 {
 }
 
 .pokedexCategory span:hover {
-    color: lightgray;
+    color: #94a0b0;
 }
 
 #content table {
@@ -149,7 +165,7 @@ h1 {
 }
 
 #content table tbody tr td:first-child {
-    color: lightgray;
+    color: #94a0b0;
 }
 
 .pokemonImgContainer {
@@ -215,7 +231,7 @@ h1 {
 
 .buttonSection button {
     border: none;
-    background-color: lightgray;
+    background-color: #94a0b0;
     color: brown;
     font-size: 32px;
     border-radius: 8px;

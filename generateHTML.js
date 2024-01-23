@@ -44,7 +44,7 @@ function generatePokemonInfo(pokemon, pokemonName, index) {
         </section>
         <section id="content" class="padding24">
             <div class="pokemonImgContainer">
-                <img src="${pokemon.sprites.front_default}">
+                <img src="${pokemon.sprites.other['official-artwork'].front_default}">
             </div>
             <div>
                 <nav class="pokedexCategory">
