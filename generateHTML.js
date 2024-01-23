@@ -25,7 +25,7 @@ function generatePokemonType(type) {
     `;
 }
 
-function generatePokemonInfo(pokemon, pokemonName, index) {
+function generatePokemonInfo(pokemon, pokemonName) {
     return /*html*/`
         <section class="padding24 maxH50" id="cardTop">
             <nav class="pokedexNav">
@@ -48,16 +48,16 @@ function generatePokemonInfo(pokemon, pokemonName, index) {
             </div>
             <div>
                 <nav class="pokedexCategory">
-                    <span onclick="renderPokemonAbout(${index})">
+                    <span onclick="renderPokemonAbout(${pokemon.id})">
                         <a>About</a>
                     </span>
-                    <span onclick="renderPokemonStats(${index})">
+                    <span onclick="renderPokemonStats(${pokemon.id})">
                         <a>Base Stats</a>
                     </span>
-                    <span onclick="renderPokemonEvolution(${index})">
+                    <span onclick="renderPokemonEvolution(${pokemon.id})">
                         <a>Evolution</a>
                     </span>
-                    <span onclick="renderPokemonMoves(${index})">
+                    <span onclick="renderPokemonMoves(${pokemon.id})">
                         <a>Moves</a>
                     </span>
                 </nav>
@@ -89,6 +89,14 @@ function generatePokemonContainer(index) {
         <div class="mobileArrows">
             <img src="./img/left-arrow-black.png" onclick="checkListLength('back', ${index})">
             <img src="./img/right-arrow-black.png" onclick="checkListLength('next', ${index})">
+        </div>
+    `;
+}
+
+function generateSearchPokemonContainer() {
+    return /*html*/`
+        <div id="pokedex">
+            
         </div>
     `;
 }
@@ -135,9 +143,16 @@ function generateAbout(pokemon) {
 function generateEvolutionList() {
     return /*html*/`
     <div>
-        <ol id="evolutionList">
+        <div id="evolutionList">
 
-        </ol>
+        </div>
     </div>
 `;
+}
+
+function generateNextEvolution(pokemon) {
+    return /*html*/`
+        <img src="./img/bottom-arrow-black.png">
+        <span>${pokemon}</span>
+    `;
 }

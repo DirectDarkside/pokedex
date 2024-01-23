@@ -11,8 +11,14 @@ function init() {
 }
 
 async function getFetch(link) {
-    let response = await fetch(link);
-    responseAsJson = await response.json()
+    const response = await fetch(link);
+    const responseAsJson = await response.json()
+    return responseAsJson;
+}
+
+async function getFetchPokemonId(id) {
+    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
+    const responseAsJson = response.json();
     return responseAsJson;
 }
 
@@ -86,15 +92,14 @@ async function renderPokemonInfo(index) {
     let currentPokemon = await getFetch(pokemon.url);
     let content = document.getElementById('pokedex');
     let pokemonName = capitalizeFirstLetter(currentPokemon.name);
-    content.innerHTML = generatePokemonInfo(currentPokemon, pokemonName, index);
+    content.innerHTML = generatePokemonInfo(currentPokemon, pokemonName);
     renderPokemonCardType(currentPokemon);
-    renderPokemonStats(index);
+    renderPokemonStats(currentPokemon.id);
     document.getElementById('pokedex').style.backgroundColor = document.getElementById(`pokemonCard${index}`).style.backgroundColor;
 }
 
-async function renderPokemonMoves(index) {
-    let pokemon = pokemonList[index];
-    let currentPokemon = await getFetch(pokemon.url);
+async function renderPokemonMoves(id) {
+    const currentPokemon = await getFetchPokemonId(id);
     let content = document.getElementById('categoryContainer');
     content.innerHTML = `<div id="moves"></div>`; 
     renderMove(currentPokemon);
@@ -107,9 +112,8 @@ function renderMove(currentPokemon) {
     });
 }
 
-async function renderPokemonEvolution(index) {
-    let pokemon = pokemonList[index];
-    let currentPokemon = await getFetch(pokemon.url);
+async function renderPokemonEvolution(id) {
+    const currentPokemon = await getFetchPokemonId(id);
     let species = await getFetch(currentPokemon.species.url);
     let evolutionChain = await getFetch(species.evolution_chain.url);
     renderEvolutionChain(evolutionChain);
@@ -121,8 +125,12 @@ function renderEvolutionChain(chain) {
     let evolutionChain = chain.chain;
     checkEvolution(evolutionChain);
     document.getElementById('categoryContainer').innerHTML = generateEvolutionList();
-    evolutionList.forEach(pokemon => {
-        document.getElementById('evolutionList').innerHTML += `<li>${pokemon}</li>`;
+    evolutionList.forEach((pokemon, index) => {
+        if(index > 0) {
+            document.getElementById('evolutionList').innerHTML += generateNextEvolution(pokemon);
+        } else {
+            document.getElementById('evolutionList').innerHTML += `<span>${pokemon}</span>`;
+        }
     });
 }
 
@@ -139,9 +147,8 @@ function checkEvolution(evolutionChain) {
     }
 }
 
-async function renderPokemonAbout(index) {
-    let pokemon = pokemonList[index];
-    let currentPokemon = await getFetch(pokemon.url);
+async function renderPokemonAbout(id) {
+    const currentPokemon = await getFetchPokemonId(id);
     let content = document.getElementById('categoryContainer');
     content.innerHTML = generateAbout(currentPokemon);
     renderPokemonSpecies(currentPokemon);
@@ -150,9 +157,8 @@ async function renderPokemonAbout(index) {
     renderPokemonGender(currentPokemon);
 }
 
-async function renderPokemonStats(index) {
-    let pokemon = pokemonList[index];
-    let currentPokemon = await getFetch(pokemon.url);
+async function renderPokemonStats(id) {
+    const currentPokemon = await getFetchPokemonId(id);
     let content = document.getElementById('categoryContainer');
     content.innerHTML = `<canvas id="myChart"></canvas>`;
     getStats(currentPokemon)
@@ -212,6 +218,16 @@ function checkBackgroundColor(type, index, j) {
     } 
 }
 
+function checkBackgroundColorPokedex(type, index) {
+    if(index == 0) {
+        typesList.forEach(typeElement => {
+            if(type == typeElement.name) {
+                document.getElementById('pokedex').style.backgroundColor = typeElement.color;
+            }
+        })
+    } 
+}
+
 function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
@@ -255,8 +271,11 @@ function loadPokemonCard(index) {
 }
 
 function renderPokemonContainer(index) {
-    let content = document.getElementById('pokedexContainer');
-    content.innerHTML = generatePokemonContainer(index);
+    document.getElementById('pokedexContainer').innerHTML = generatePokemonContainer(index);
+}
+
+function renderSearchPokemonContainer(index) {
+    document.getElementById('pokedexContainer').innerHTML = generateSearchPokemonContainer();
 }
 
 function checkArrow(orientation, index) {
@@ -288,20 +307,27 @@ function closeCard() {
     document.getElementById('pokedexContainer').style.display = 'none';
 }
 
+function renderSearchResult(name) {
+    openCard();
+    renderSearchPokemonContainer();
+    renderSearchedPokemon(name);
+}
+
 async function renderSearchedPokemon(name) {
     const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`);
-    const currentPokemon = response.json();
+    const currentPokemon = await response.json();
+    const typeArr = currentPokemon.types;
     let content = document.getElementById('pokedex');
     let pokemonName = capitalizeFirstLetter(currentPokemon.name);
-    content.innerHTML = generatePokemonInfo(currentPokemon, pokemonName, index);
+    content.innerHTML = generatePokemonInfo(currentPokemon, pokemonName);
     renderPokemonCardType(currentPokemon);
-    renderPokemonStats(index);
-    document.getElementById('pokedex').style.backgroundColor = document.getElementById(`pokemonCard${index}`).style.backgroundColor;
+    renderPokemonStats(currentPokemon.id);
+    typeArr.forEach((type, index) => checkBackgroundColorPokedex(type.type.name, index));
 }
 
 async function getPokemonSuggestions() {
-    const inputElement = document.getElementById('pokemon-input');
-    const suggestionsElement = document.getElementById('pokemon-suggestions');
+    const inputElement = document.getElementById('pokemonInput');
+    const suggestionsElement = document.getElementById('pokemonSuggestions');
 
     const inputValue = inputElement.value.trim();
 
@@ -314,9 +340,9 @@ async function getPokemonSuggestions() {
         const response = await fetch(`https://pokeapi.co/api/v2/pokemon/?limit=1000`);
         const data = await response.json();
 
-        const matchingPokemon = data.results.filter(pokemon => pokemon.name.startsWith(inputValue.toLowerCase()));
+        const matchingPokemon = data.results.filter(pokemon => pokemon.name.startsWith(inputValue.toLowerCase())).slice(0, 6);
 
-        const suggestionsHTML = matchingPokemon.map(pokemon => `<div>${pokemon.name}</div>`).join('');
+        const suggestionsHTML = matchingPokemon.map((pokemon, index) => `<div id="dropDownPokemon${index}" onclick="renderSearchResult('${pokemon.name}')">${pokemon.name}</div>`).join('');
         suggestionsElement.innerHTML = suggestionsHTML;
     } catch (error) {
         console.error('Error fetching Pokémon data', error);
