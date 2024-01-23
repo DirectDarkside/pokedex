@@ -32,7 +32,6 @@ function generatePokemonInfo(pokemon, pokemonName) {
                 <div onclick="closeCard()">
                 <img src="./img/left-arrow-white.png">
                 </div>
-                <img src="./img/heart-white.png">
             </nav>
             <section class="pokemonHead">
                 <h1 id="pokemonName">${pokemonName}</h1>
