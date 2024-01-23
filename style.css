@@ -133,6 +133,8 @@ h1 {
   display: flex;
   align-items: center;
   cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
 }
 
 .pokedexCategory a {
@@ -321,4 +323,10 @@ h1 {
   #myChart {
     margin-top: 24px;
   }
+}
+
+@media (max-width: 340px) {
+    .pokedexCategory {
+        gap: 5px;
+    }
 }

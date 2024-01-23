@@ -27,7 +27,7 @@ function generatePokemonType(type) {
 
 function generatePokemonInfo(pokemon, pokemonName) {
   return /*html*/ `
-        <section class="padding24 maxH50" id="cardTop">
+        <section class="padding24" id="cardTop">
             <nav class="pokedexNav">
                 <div onclick="closeCard()">
                 <img src="./img/left-arrow-white.png">
