@@ -47,16 +47,16 @@ function generatePokemonInfo(pokemon, pokemonName) {
             </div>
             <div>
                 <nav class="pokedexCategory">
-                    <span onclick="renderPokemonAbout(${pokemon.id})">
+                    <span onclick="renderPokemonAbout(${pokemon.id})" class="category">
                         <a>About</a>
                     </span>
-                    <span onclick="renderPokemonStats(${pokemon.id})">
+                    <span onclick="renderPokemonStats(${pokemon.id})" class="category">
                         <a>Base Stats</a>
                     </span>
-                    <span onclick="renderPokemonEvolution(${pokemon.id})">
+                    <span onclick="renderPokemonEvolution(${pokemon.id})" class="category">
                         <a>Evolution</a>
                     </span>
-                    <span onclick="renderPokemonMoves(${pokemon.id})">
+                    <span onclick="renderPokemonMoves(${pokemon.id})" class="category">
                         <a>Moves</a>
                     </span>
                 </nav>

@@ -12,6 +12,10 @@ h1 {
   text-align: center;
 }
 
+.active {
+  background-color: rgba(0, 0, 0, 0.2) !important;
+}
+
 .h50 {
   height: 50%;
 }
@@ -135,6 +139,7 @@ h1 {
   cursor: pointer;
   background-color: rgba(0, 0, 0, 0.05);
   border-radius: 8px;
+  padding: 0px 4px;
 }
 
 .pokedexCategory a {
@@ -240,6 +245,14 @@ h1 {
 
 .arrowImage {
   cursor: pointer;
+  background-color: rgb(255,255,255);
+  border-radius: 16px;
+  padding: 4px;
+  transition: background-color 120ms ease-in-out;
+}
+
+.arrowImage:hover {
+  background-color: rgb(104, 103, 103);
 }
 
 #myChart {
@@ -256,11 +269,19 @@ h1 {
   display: none;
   align-items: center;
   gap: 24px;
-  margin-top: 24px;
+  margin-top: 0px;
 }
 
 .mobileArrows img {
   cursor: pointer;
+  background-color: rgb(255,255,255);
+  border-radius: 16px;
+  padding: 4px;
+  transition: background-color 120ms ease-in-out;
+}
+
+.mobileArrows img:hover {
+  background-color: rgb(104, 103, 103);
 }
 
 #evolutionList {
@@ -328,5 +349,9 @@ h1 {
 @media (max-width: 340px) {
     .pokedexCategory {
         gap: 5px;
+    }
+
+    .pokedexCategory span {
+      font-size: 14px;
     }
 }
