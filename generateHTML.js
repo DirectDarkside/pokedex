@@ -94,7 +94,7 @@ function generatePokemonContainer(index) {
 
 function generateSearchPokemonContainer() {
   return /*html*/ `
-        <div id="pokedex">
+        <div id="pokedex" onclick="stopEvent(event)">
             
         </div>
     `;
