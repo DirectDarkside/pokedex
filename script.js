@@ -128,7 +128,8 @@ function renderSearchPokemonContainer(index) {
     generateSearchPokemonContainer();
 }
 
-function checkListLength(orientation, index) {
+function checkListLength(orientation, index, event) {
+  event.stopPropagation();
   value = checkArrow(orientation, index);
   let length = pokemonList.length - 1;
   if (value < 0) {
@@ -137,6 +138,10 @@ function checkListLength(orientation, index) {
     value = 0;
   }
   loadPokemonCard(value);
+}
+
+function stopEvent(event) {
+  event.stopPropagation();
 }
 
 function renderSearchResult(name) {
