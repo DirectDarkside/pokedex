@@ -23,11 +23,11 @@ async function getFetchPokemonId(id) {
 }
 
 function changeActive(index) {
-  const categorys = document.querySelectorAll('.category');
-  categorys.forEach(category => {
-    category.classList.remove('active');
+  const categorys = document.querySelectorAll(".category");
+  categorys.forEach((category) => {
+    category.classList.remove("active");
   });
-  categorys[index].classList.add('active');
+  categorys[index].classList.add("active");
 }
 
 async function loadPokemonList() {
@@ -165,7 +165,7 @@ async function getPokemonSuggestions() {
 
   try {
     const response = await fetch(
-      `https://pokeapi.co/api/v2/pokemon/?limit=1000`
+      `https://pokeapi.co/api/v2/pokemon/?limit=600`
     );
     const data = await response.json();
 
@@ -176,11 +176,20 @@ async function getPokemonSuggestions() {
     const suggestionsHTML = matchingPokemon
       .map(
         (pokemon, index) =>
-          `<div id="dropDownPokemon${index}" onclick="renderSearchResult('${pokemon.name}')">${pokemon.name}</div>`
+          /*html */ `<div id="dropDownPokemon${index}" onclick="renderSearchResult('${pokemon.name}')">${pokemon.name} <img id="dropDownPokemonImage${index}" class="dropDownImg"></div>`
       )
       .join("");
     suggestionsElement.innerHTML = suggestionsHTML;
+    renderDropDownImage(matchingPokemon);
   } catch (error) {
     console.error("Error fetching Pokémon data", error);
+  }
+}
+
+async function renderDropDownImage(pokemonArray) {
+  for (let i = 0; i < pokemonArray.length; i++) {
+    const currentPokemon = await getFetch(pokemonArray[i].url);
+    document.getElementById(`dropDownPokemonImage${i}`).src =
+      currentPokemon.sprites["front_default"];
   }
 }

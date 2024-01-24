@@ -314,6 +314,13 @@ h1 {
 
 #pokemonSuggestions div {
   border-radius: 8px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.dropDownImg {
+  width: 40px;
 }
 
 #pokemonSuggestions div:hover {
