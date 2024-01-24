@@ -132,8 +132,8 @@ function generateAbout(pokemon) {
                 <td id="eggGroup">Monster</td>
             </tr>
             <tr>
-                <td>Egg Cycle</td>
-                <td>Grass</td>
+                <td>Hatch Time</td>
+                <td id="hatchTime">unknown</td>
             </tr>
         </table>
     `;

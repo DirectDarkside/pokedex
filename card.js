@@ -101,6 +101,11 @@ async function renderPokemonSpecies(currentPokemon) {
   let species = await getFetch(currentPokemon.species.url);
   document.getElementById("species").innerHTML = species.genera[7].genus;
   renderPokemonEggGroup(species);
+  renderHatchTime(species);
+}
+
+function renderHatchTime(species) {
+  document.getElementById('hatchTime').innerHTML = `${species['hatch_counter']} Cycles`;
 }
 
 function renderPokemonCardType(pokemon) {
