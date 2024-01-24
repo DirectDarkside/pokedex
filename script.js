@@ -41,10 +41,13 @@ async function loadPokemonList() {
 
 async function loadNewPokemonList(event) {
   document.getElementById("nextButton").disabled = true;
-  let url = nextUrl;
-  let responseAsJson = await getFetch(url);
+  let responseAsJson = await getFetch(nextUrl);
   responseAsJson.results.forEach((result) => pokemonList.push(result));
   currentIndex += 20;
+  newPokemonListFunktion(responseAsJson);
+}
+
+function newPokemonListFunktion(responseAsJson) {
   renderPokemonList(pokemonList);
   setButtonAttribute(responseAsJson);
   setTimeout(() => {

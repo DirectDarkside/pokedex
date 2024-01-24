@@ -20,14 +20,18 @@ async function renderSearchedPokemon(name) {
   const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`);
   const currentPokemon = await response.json();
   const typeArr = currentPokemon.types;
+  searchedPokemonData(currentPokemon);
+  typeArr.forEach((type, index) =>
+    checkBackgroundColorPokedex(type.type.name, index)
+  );
+}
+
+function searchedPokemonData(currentPokemon) {
   let content = document.getElementById("pokedex");
   let pokemonName = capitalizeFirstLetter(currentPokemon.name);
   content.innerHTML = generatePokemonInfo(currentPokemon, pokemonName);
   renderPokemonCardType(currentPokemon);
   renderPokemonStats(currentPokemon.id);
-  typeArr.forEach((type, index) =>
-    checkBackgroundColorPokedex(type.type.name, index)
-  );
 }
 
 function loadPokemonCard(index) {
@@ -105,7 +109,9 @@ async function renderPokemonSpecies(currentPokemon) {
 }
 
 function renderHatchTime(species) {
-  document.getElementById('hatchTime').innerHTML = `${species['hatch_counter']} Cycles`;
+  document.getElementById(
+    "hatchTime"
+  ).innerHTML = `${species["hatch_counter"]} Cycles`;
 }
 
 function renderPokemonCardType(pokemon) {

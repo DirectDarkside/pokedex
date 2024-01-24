@@ -130,6 +130,7 @@ h1 {
   gap: 8px;
   justify-content: space-between;
   height: 30px;
+  margin-bottom: 16px;
 }
 
 .pokedexCategory span {
@@ -151,7 +152,6 @@ h1 {
 }
 
 #content table {
-  margin-top: 24px;
   width: 100%;
   font-size: 14px;
 }
