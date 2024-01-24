@@ -40,14 +40,16 @@ async function loadPokemonList() {
 }
 
 async function loadNewPokemonList(event) {
+  document.getElementById("nextButton").disabled = true;
   let url = nextUrl;
   let responseAsJson = await getFetch(url);
   responseAsJson.results.forEach((result) => pokemonList.push(result));
   currentIndex += 20;
+  renderPokemonList(pokemonList);
+  setButtonAttribute(responseAsJson);
   setTimeout(() => {
-    renderPokemonList(pokemonList);
-    setButtonAttribute(responseAsJson);
-  }, 250);
+    document.getElementById("nextButton").disabled = false;
+  }, 1000);
 }
 
 function renderPokemonList(pokemonList) {
