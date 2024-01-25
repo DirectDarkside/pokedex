@@ -329,6 +329,17 @@ body {
   cursor: pointer;
 }
 
+#pokemonInput {
+  border-radius: 16px;
+  padding: 4px 8px;
+  background-color: rgb(221 219 211);
+  animation: neonize 1250ms ease-in-out infinite alternate;
+}
+
+#pokemonInput:focus {
+  background-color: white;
+}
+
 @media (max-width: 640px) {
   #pokedexContainer {
     flex-direction: column;
