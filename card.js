@@ -184,7 +184,7 @@ function renderEvolutionChain(chain) {
     } else {
       document.getElementById(
         "evolutionList"
-      ).innerHTML += `<img id="evolutionImage${index}"><span>${pokemon}</span>`;
+      ).innerHTML += `<div><img id="evolutionImage${index}"><span>${pokemon}</span></div>`;
     }
   });
 }

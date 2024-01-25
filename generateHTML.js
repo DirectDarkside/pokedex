@@ -151,8 +151,10 @@ function generateEvolutionList() {
 
 function generateNextEvolution(pokemon, value) {
   return /*html*/ `
-        <img src="./img/bottom-arrow-black.png">
-        <img id="evolutionImage${value}">
-        <span>${pokemon}</span>
+        <img src="./img/right-arrow-black.png">
+        <div>
+            <img id="evolutionImage${value}">
+            <span>${pokemon}</span>
+        </div>
     `;
 }
