@@ -55,4 +55,20 @@ let typesList = [
     name: "fairy",
     color: "rgb(255, 23, 205)",
   },
+  {
+    name: "ice",
+    color: "rgb(147, 197, 245)",
+  },
+  {
+    name: "dragon",
+    color: "rgb(0, 103, 201)"
+  },
+  {
+    name: "dark",
+    color: "rgb(39, 46, 54)"
+  },
+  {
+    name: "steel",
+    color: "rgba(195, 204, 214)"
+  }
 ];
