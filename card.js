@@ -199,7 +199,7 @@ function checkEvolution(evolutionChain) {
     );
     evolutionList.push(firstLetterSecondPokemon);
   }
-  if (evolutionChain.evolves_to[0].evolves_to[0]) {
+  if (evolutionChain.evolves_to[0]?.evolves_to[0]) {
     let firstLetterThirdPokemon = capitalizeFirstLetter(
       evolutionChain.evolves_to[0].evolves_to[0].species.name
     );

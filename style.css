@@ -235,12 +235,12 @@ body {
 }
 
 .buttonSection button {
-  border: none;
-  background-color: #94a0b0;
-  color: brown;
-  font-size: 32px;
-  border-radius: 8px;
-  cursor: pointer;
+  border: 3px solid rgb(159 136 136);
+    background-color: #c4c6c9;
+    color: #dd3333;
+    font-size: 32px;
+    border-radius: 8px;
+    cursor: pointer;
 }
 
 .arrowImage {
