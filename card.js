@@ -171,7 +171,7 @@ async function renderPokemonEvolution(id) {
 
 function renderEvolutionChain(chain) {
   evolutionList = [];
-  document.getElementById("categoryContainer").innerHTML = "";
+  let value = 1;
   let evolutionChain = chain.chain;
   checkEvolution(evolutionChain);
   document.getElementById("categoryContainer").innerHTML =
@@ -179,11 +179,12 @@ function renderEvolutionChain(chain) {
   evolutionList.forEach((pokemon, index) => {
     if (index > 0) {
       document.getElementById("evolutionList").innerHTML +=
-        generateNextEvolution(pokemon);
+        generateNextEvolution(pokemon, value);
+        value++;
     } else {
       document.getElementById(
         "evolutionList"
-      ).innerHTML += `<span>${pokemon}</span>`;
+      ).innerHTML += `<img id="evolutionImage${index}"><span>${pokemon}</span>`;
     }
   });
 }
@@ -193,18 +194,31 @@ function checkEvolution(evolutionChain) {
     evolutionChain.species.name
   );
   evolutionList.push(firstLetterFirstPokemon);
+  renderEvolutionImage(evolutionChain.species.name, 0);
+  checkEvolutionChain(evolutionChain);
+}
+
+function checkEvolutionChain(evolutionChain) {
   if (evolutionChain.evolves_to[0]) {
     let firstLetterSecondPokemon = capitalizeFirstLetter(
       evolutionChain.evolves_to[0].species.name
     );
     evolutionList.push(firstLetterSecondPokemon);
+    renderEvolutionImage(evolutionChain.evolves_to[0].species.name, 1);
   }
   if (evolutionChain.evolves_to[0]?.evolves_to[0]) {
     let firstLetterThirdPokemon = capitalizeFirstLetter(
       evolutionChain.evolves_to[0].evolves_to[0].species.name
     );
     evolutionList.push(firstLetterThirdPokemon);
+    renderEvolutionImage(evolutionChain.evolves_to[0].evolves_to[0].species.name, 2);
   }
+}
+
+async function renderEvolutionImage(pokemonName, index) {
+  let currentPokemon = await getFetchPokemonId(pokemonName);
+  document.getElementById(`evolutionImage${index}`).src =
+    currentPokemon.sprites.other["official-artwork"].front_default;
 }
 
 async function renderPokemonMoves(id) {
