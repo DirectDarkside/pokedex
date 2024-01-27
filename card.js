@@ -1,3 +1,6 @@
+let backParameter;
+let nextParameter;
+
 function checkArrow(orientation, index) {
   let value = index;
   if (orientation == "back") {
@@ -162,11 +165,13 @@ function renderPokemonType(pokemon, index) {
 }
 
 async function renderPokemonEvolution(id) {
+  disableArrows();
   changeActive(2);
   const currentPokemon = await getFetchPokemonId(id);
   let species = await getFetch(currentPokemon.species.url);
   let evolutionChain = await getFetch(species.evolution_chain.url);
   renderEvolutionChain(evolutionChain);
+  enableArrows();
 }
 
 function renderEvolutionChain(chain) {
@@ -180,7 +185,7 @@ function renderEvolutionChain(chain) {
     if (index > 0) {
       document.getElementById("evolutionList").innerHTML +=
         generateNextEvolution(pokemon, value);
-        value++;
+      value++;
     } else {
       document.getElementById(
         "evolutionList"
@@ -211,14 +216,17 @@ function checkEvolutionChain(evolutionChain) {
       evolutionChain.evolves_to[0].evolves_to[0].species.name
     );
     evolutionList.push(firstLetterThirdPokemon);
-    renderEvolutionImage(evolutionChain.evolves_to[0].evolves_to[0].species.name, 2);
+    renderEvolutionImage(
+      evolutionChain.evolves_to[0].evolves_to[0].species.name,
+      2
+    );
   }
 }
 
 async function renderEvolutionImage(pokemonName, index) {
   let currentPokemon = await getFetchPokemonId(pokemonName);
   document.getElementById(`evolutionImage${index}`).src =
-    currentPokemon.sprites.other["official-artwork"].front_default;
+    currentPokemon.sprites.front_default;
 }
 
 async function renderPokemonMoves(id) {
@@ -233,5 +241,31 @@ function renderMove(currentPokemon) {
   let moveContainer = document.getElementById("moves");
   currentPokemon.moves.forEach((move) => {
     moveContainer.innerHTML += `<p>${move.move.name}</p>`;
+  });
+}
+
+function disableArrows() {
+  const arrows = document.querySelectorAll(".bigArrow");
+  const mobileArrows = document.querySelectorAll(".mobileArrow");
+  backParameter = arrows[0].onclick;
+  nextParameter = arrows[1].onclick;
+  arrows.forEach((arrow) => (arrow.onclick = (event) => stopEvent(event)));
+  mobileArrows.forEach(
+    (mobileArrow) => (mobileArrow.onclick = (event) => stopEvent(event))
+  );
+}
+
+function enableArrows() {
+  const arrows = document.querySelectorAll(".bigArrow");
+  const mobileArrows = document.querySelectorAll(".mobileArrow");
+  resetArrows(arrows);
+  resetArrows(mobileArrows);
+}
+
+function resetArrows(arr) {
+  arr.forEach((arrow, index) => {
+    if (index == 0) {
+      arrow.onclick = backParameter;
+    } else arrow.onclick = nextParameter;
   });
 }
