@@ -247,12 +247,14 @@ function renderMove(currentPokemon) {
 function disableArrows() {
   const arrows = document.querySelectorAll(".bigArrow");
   const mobileArrows = document.querySelectorAll(".mobileArrow");
-  backParameter = arrows[0].onclick;
-  nextParameter = arrows[1].onclick;
-  arrows.forEach((arrow) => (arrow.onclick = (event) => stopEvent(event)));
-  mobileArrows.forEach(
-    (mobileArrow) => (mobileArrow.onclick = (event) => stopEvent(event))
-  );
+  if (arrows.length != 0 && mobileArrows != 0) {
+    backParameter = arrows[0].onclick;
+    nextParameter = arrows[1].onclick;
+    arrows.forEach((arrow) => (arrow.onclick = (event) => stopEvent(event)));
+    mobileArrows.forEach(
+      (mobileArrow) => (mobileArrow.onclick = (event) => stopEvent(event))
+    );
+  }
 }
 
 function enableArrows() {
