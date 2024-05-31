@@ -11,14 +11,16 @@
 </head>
 
 <body onload="init()">
-    <div class="headline">
-        <h1><i>Pokedex</i></h1>
-        <img src="./img/pokedex-logo.png">
-    </div>
-    <section class="inputSection">
-        <input type="text" id="pokemonInput" oninput="getPokemonSuggestions()" placeholder="Type a pokemon name">
-        <div id="pokemonSuggestions"></div>
-    </section>
+    <nav>
+        <div class="headline">
+            <h1><i>Pokedex</i></h1>
+            <img src="./img/pokedex-logo.png">
+        </div>
+        <section class="inputSection">
+            <input type="text" id="pokemonInput" oninput="getPokemonSuggestions()" placeholder="Type a pokemon name">
+            <div id="pokemonSuggestions"></div>
+        </section>
+    </nav>
     <section>
         <div id="pokemonList">
         </div>
@@ -26,6 +28,11 @@
     <section class="buttonSection">
         <button id="nextButton" onclick="loadNewPokemonList('next')">Load More</button>
     </section>
+    <footer>
+        <a href="">Imprint</a>
+        <a href="">Data Protection</a>
+        <a href="https://pokeapi.co/" target="_blank">PokeApi</a>
+    </footer>
     <div id="pokedexContainer" onclick="closeCard()">
         
     </div>

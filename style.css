@@ -1,11 +1,36 @@
 body {
   margin: 0;
-  background-color: #0061b0;
+  background-color: whitesmoke;
   font-family: "Open Sans";
-  background-image: url("./img/bg.png");
+  /* background-image: url("./img/bg.png"); */
   background-size: contain;
   background-repeat: space;
   background-position: center;
+}
+
+nav {
+  background-color: rgb(79, 79, 248);
+  margin-bottom: 24px;
+  box-shadow: 2px 2px 8px 2px rgba(0, 0, 0, 0.5);
+}
+
+footer a {
+  text-decoration: none;
+  color: wheat;
+  transition: text-decoration 80ms ease-in-out;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+footer {
+  background-color: rgb(79, 79, 248);
+  margin-top: 24px;
+  padding: 24px 0;
+  display: flex;
+  justify-content: center;
+  gap: 16px;
 }
 
 .active {
@@ -25,6 +50,7 @@ body {
   text-align: center;
   text-shadow: 1px 0 0 red, 0 -1px 0 red, 0 1px 0 red, -1px 0 0 #000;
   font-size: 32px;
+  height: fit-content;
 }
 
 .headline img {
@@ -310,7 +336,7 @@ body {
 }
 
 #pokemonSuggestions {
-  background-color: black;
+  background-color: blue;
   color: white;
   max-width: 200px;
   width: 200px;
