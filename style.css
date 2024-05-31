@@ -267,17 +267,28 @@ footer {
 }
 
 .buttonSection button {
-  border: 3px solid rgb(159 136 136);
-    background-color: #c4c6c9;
-    color: #dd3333;
-    font-size: 32px;
-    border-radius: 8px;
-    cursor: pointer;
+  box-shadow: 3px 4px 0px 0px #899599;
+  background: linear-gradient(to bottom, #ededed 5%, #f23841 100%);
+  border-radius: 15px;
+  border: 1px solid #d6bcd6;
+  display: inline-block;
+  cursor: pointer;
+  color: #ff0000;
+  font-size: 32px;
+  font-style: italic;
+  padding: 8px 8px;
+  text-shadow: 0px 1px 0px #e1e2ed;
+  transition: all 125ms linear;
+}
+
+.buttonSection button:hover {
+  background:linear-gradient(to bottom, #f23841 5%, #ededed 100%);
+	background-color:#f23841;
 }
 
 .arrowImage {
   cursor: pointer;
-  background-color: rgb(255,255,255);
+  background-color: rgb(255, 255, 255);
   border-radius: 16px;
   padding: 4px;
   transition: background-color 120ms ease-in-out;
@@ -306,7 +317,7 @@ footer {
 
 .mobileArrows img {
   cursor: pointer;
-  background-color: rgb(255,255,255);
+  background-color: rgb(255, 255, 255);
   border-radius: 16px;
   padding: 4px;
   transition: background-color 120ms ease-in-out;
@@ -402,7 +413,6 @@ footer {
 }
 
 @media (max-width: 340px) {
-
   .headline {
     flex-direction: column;
     align-items: center;
@@ -413,11 +423,11 @@ footer {
     margin: 0;
   }
 
-    .pokedexCategory {
-        gap: 5px;
-    }
+  .pokedexCategory {
+    gap: 5px;
+  }
 
-    .pokedexCategory span {
-      font-size: 14px;
-    }
+  .pokedexCategory span {
+    font-size: 14px;
+  }
 }
