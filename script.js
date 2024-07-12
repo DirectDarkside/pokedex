@@ -62,12 +62,16 @@ function changeActive(index) {
  * @return {Promise<void>} A Promise that resolves when the Pokemon list is loaded and rendered.
  */
 async function loadPokemonList() {
-  let responseAsJson = await getFetch(
-    "https://pokeapi.co/api/v2/pokemon?limit=20&offset=0"
-  );
-  pokemonList = responseAsJson.results;
-  renderPokemonList(pokemonList);
-  setButtonAttribute(responseAsJson);
+  try {
+    let responseAsJson = await getFetch(
+      "https://pokeapi.co/api/v2/pokemon?limit=20&offset=0"
+    );
+    pokemonList = responseAsJson.results;
+    renderPokemonList(pokemonList);
+    setButtonAttribute(responseAsJson);
+  } catch (error) {
+    console.error(error);
+  }
 }
 
 /**
