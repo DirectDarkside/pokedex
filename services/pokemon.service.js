@@ -1,4 +1,4 @@
-class PokemonService {
+export class PokemonService {
 
 
     async getPokemon(id) {
