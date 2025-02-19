@@ -5,7 +5,7 @@ export class PokemonList {
     contentDom;
     pokemonService;
     pokemonList = [];
-    limit = 20;
+    limit = 1;
     offset = 0;
 
     constructor(id, pokemonService) {
@@ -18,10 +18,13 @@ export class PokemonList {
     async incrementPokemonList() {
         let newPokemons = await this.pokemonService.getPokemonList(this.limit, this.offset);
         this.offset += this.limit;
-        newPokemons.forEach((pokemon) => {
-            let newPokemon = new Pokemon(pokemon, this.pokemonService);
-            this.pokemonList.push(newPokemon);
-            this.renderPokemon(newPokemon);
+        newPokemons.forEach((pokemon, index) => {
+            let newPokemon = new Pokemon(index, pokemon, this.pokemonService);
+            this.pokemonList.push({
+                id: index,
+                pokemon: newPokemon
+            });
+            this.renderPokemon(index, newPokemon);
         });
     }
 
@@ -32,16 +35,19 @@ export class PokemonList {
         });
     }
 
-    renderPokemon(pokemon) {
-        this.contentDom.innerHTML += this.generatePokemonHTML(pokemon);
+    renderPokemon(id, pokemon) {
+        this.contentDom.innerHTML += this.generatePokemonHTML(id, pokemon);
     }
 
-    generatePokemonHTML(pokemon) {
+    generatePokemonHTML(id, pokemon) {
         return /*html*/ `
-            <div class="pokemonCard">
+            <div class="pokemonCard" id="pokemonCard${id}">
                 <div>
                     <h2>${pokemon.name}</h2>
                 </div>
+                <div id="pokemonTypes${id}">
+                </div>
+
             </div>
         `;
     }
